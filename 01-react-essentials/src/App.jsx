@@ -1,54 +1,65 @@
 // ? JSX - Java Script + HTML together
-import image from "./assets/react-core-concepts.png";
-import component from "./assets/components.png";
-import { CORE_CONCEPTS } from "./data.js";
 
-const descriptions = ["Fundemential", "Core", "Crucial"];
-const getRandomInt = function (max) {
-  return Math.floor(Math.random() * (max + 1));
-};
-// React components - should always be Capitalized and return JSX
-function Header() {
-  // Header is nested (child) component
-  return (
-    <header>
-      {/* dynamically loading image */}
-      <img src={image} alt="Stylized atom" />
-      <h1>Essentials</h1>
-      <p>
-        {/* dynamic component 
-          Important: if-statements, for-loops, function definitions and other
-          block statements are not allowed here!  Only expressions that directly produce a value.*/}
-        {descriptions[getRandomInt(descriptions.length - 1)]} React concepts you
-        will need for almost any app you are going to build!
-      </p>
-    </header>
-  );
-}
+// State
+// Is a data that can change and affects what you see on screen
+import { useState } from "react";
 
-// Props - is an object that contains values that we passed to component
-// function CoreConcept(props) {
-//   return (
-//     <li>
-//       <img src={props.image} alt={props.title}></img>
-//       <h3>{props.title}</h3>
-//       <p>{props.description}</p>
-//     </li>
-//   );
-// }
+// ? Derived (computed) state = data you DON’T store, because you can calculate it from existing state.
 
-// ? Or we can destructure this object
-function CoreConcept({ title, description, image }) {
+// ? All functions that start on 'use' are reactHooks
+
+import { CORE_CONCEPTS, EXAMPLES } from "./data.js";
+import Header from "./components/Header/Header.jsx";
+import CoreConcept from "./components/CoreConcept/CoreConcept.jsx";
+import TabBtn from "./components/Tabs/TabBtn.jsx";
+
+
+// ? React components - should always be Capitalized and return JSX
+
+/* Props - is an object that contains values that we passed to component
+function CoreConcept(props) {
   return (
     <li>
-      <img src={image} alt={title}></img>
-      <h3>{title}</h3>
-      <p>{description}</p>
+      <img src={props.image} alt={props.title}></img>
+      <h3>{props.title}</h3>
+      <p>{props.description}</p>
     </li>
   );
-}
+} */
+
+// ? Or we can destructure this object
+// (Check CoreConceot.jsx)
 
 function App() {
+  // ? You should always call hooks on top level of component functions
+  const [selectedTopic, setSelectedTopic] = useState("components"); // useState returns array with two elements. Data inside parentheses is initial state value
+  // selectedTopic - current state value. setSelectedTopic - state updating function
+
+  const [currentPrice, updatePrice] = useState(100);
+  function changePrice() {
+    updatePrice(currentPrice - 25);
+  }
+
+  function handleSelect(clickedBtn) {
+    //! useState(); - not allowed
+    // tabComponent = clickedBtn;
+
+    setSelectedTopic(clickedBtn);
+  }
+
+  let tabContent = <p>Please select a topic</p>;
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
+  }
+
   // App is root component
   return (
     <div>
@@ -76,6 +87,53 @@ function App() {
           </ul>
         </section>
         <h2>Time to get started!</h2>
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            {/* // ? Passing Custom Arguments to Event Function */}
+            <TabBtn
+              isSelected={selectedTopic === "components"}
+              onSelect={() => handleSelect("components")}
+            >
+              Components
+            </TabBtn>
+            <TabBtn
+              isSelected={selectedTopic === "jsx"}
+              onSelect={() => handleSelect("jsx")}
+            >
+              JSX
+            </TabBtn>
+            <TabBtn
+              isSelected={selectedTopic === "props"}
+              onSelect={() => handleSelect("props")}
+            >
+              Props
+            </TabBtn>
+            <TabBtn
+              isSelected={selectedTopic === "state"}
+              onSelect={() => handleSelect("state")}
+            >
+              State
+            </TabBtn>
+          </menu>
+          {/* {tabComponent} not gonna change with function. Should use state */}
+          {/* {!selectedTopic && <p>Please select a topic</p>}
+          {selectedTopic && (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title}</h3>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )}
+           */}
+          {tabContent}
+          <div>
+            <p data-testid="price">{currentPrice}</p>
+            <button onClick={changePrice}>Apply Discount</button>
+          </div>
+        </section>
       </main>
     </div>
   );
