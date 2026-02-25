@@ -24,7 +24,7 @@ export default {
   plugins: [],
 }
 
-// index.css:
+// index.css: v
 // @tailwind base;
 // @tailwind components;
 // @tailwind utilities;
