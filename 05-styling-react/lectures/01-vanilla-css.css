@@ -1,0 +1,22 @@
+/* ? Vanilla CSS: Advantages & Disadvantages
+Advantages:
+ - CSS code is decoupled from JSX code
+ - CSS code can be written by another
+  developer who needs only a minimal
+  amount of access to your JSX code */ 
+
+/* ?  Disadvantages:  */
+/* ! - CSS code is not scoped to components →
+This means that all CSS styles are applied to the entire page, even if you have a separate CSS file connected to that specific component */
+
+/* ? Inline styles: 
+let's you wrtie style styles only to specific elements, doesn't apply to others elements
+✔ Dynamic (can use variables)
+✔ No CSS file needed
+❌ Hard to maintain
+❌ No hover, media queries, etc. 
+
+You should write styles inside the object
+    <p style={{ color: "red", textAlign: "left" }}></p>
+*/
+
