@@ -1,11 +1,6 @@
 import { useState } from "react";
 
-export default function Player({
-  initialName,
-  playerSymbol,
-  isActive,
-  onNameChange,
-}) {
+export default function Player({ initialName, playerSymbol, isActive, onNameChange }) {
   // ? User Input & Two-Way-Binding
   const [playerName, setPlayerName] = useState(initialName);
 
@@ -26,14 +21,7 @@ export default function Player({
   let btnCaption = "Edit";
 
   if (isEditing) {
-    nameTag = (
-      <input
-        type="text"
-        value={playerName}
-        onChange={handleChange}
-        required
-      ></input>
-    ); // onChange - works when user changes input value
+    nameTag = <input type="text" value={playerName} onChange={handleChange} required></input>; // onChange - works when user changes input value
     btnCaption = "Save";
   }
 
