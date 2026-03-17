@@ -1,5 +1,5 @@
 // ? useCallback hook
-// returns a memoized version of a function — meaning React caches the function and only recreates it when its dependencies change.
+// returns a memorized version of a function — meaning React caches the function and only recreates it when its dependencies change.
 
 // In React, every re-render recreates everything inside the component — including functions:
 
