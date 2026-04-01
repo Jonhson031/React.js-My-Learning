@@ -1,7 +1,5 @@
-// ? useStateAction
+// ? useActionState hook
 // * manages pending, error, and result state for you:
-
-import { useActionState } from 'react';
 
 import { useActionState } from 'react';
 
