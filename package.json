@@ -1,0 +1,21 @@
+{
+  "name": "react.js-my-learning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jonhson031/React.js-My-Learning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Jonhson031/React.js-My-Learning/issues"
+  },
+  "homepage": "https://github.com/Jonhson031/React.js-My-Learning#readme"
+}
