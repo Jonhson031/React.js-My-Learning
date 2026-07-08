@@ -27,7 +27,7 @@ person = {
   name: "Maks",
   age: 20,
 };
-// ! person.isAdmin = true; // - type error
+person.isAdmin = true; // - type error
 
 let people: {
   name: string;
