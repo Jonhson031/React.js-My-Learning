@@ -1,5 +1,5 @@
-// * Intersations
-// ? Combines two types using & symbol into one
+// * Intersections
+// ? Combines two types using '&' symbol into one
 
 type User2 = {
   name: string;

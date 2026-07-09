@@ -1,3 +1,4 @@
+"use client";
 import Todos from "./components/Todos";
 import styles from "./page.module.css";
 import Button from "./components/Button";
